@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Support = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-primary via-primary-glow to-accent overflow-hidden">
         <div className="absolute inset-0 opacity-10">

@@ -20,7 +20,7 @@ const Recruiting = () => {
   const scale3 = useTransform(scrollYProgress, [0.6, 0.8], [0.8, 1]);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative pt-16">
       {/* Section 1: Hero */}
       <motion.section 
         style={{ opacity: opacity1, scale: scale1 }}

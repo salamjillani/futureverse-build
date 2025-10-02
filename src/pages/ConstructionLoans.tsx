@@ -15,7 +15,7 @@ const ConstructionLoans = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-glow to-primary">

@@ -6,7 +6,7 @@ import { Scene3D } from "@/components/3D/Scene3D";
 
 const Home = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16">
       {/* Hero Section with 3D Background */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* 3D Background */}

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const USDALoans = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-accent via-accent/80 to-primary">
         <div className="absolute inset-0 opacity-20">
