@@ -3,7 +3,15 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { Navigation } from "@/components/Layout/Navigation";
+import Home from "./pages/Home";
+import Recruiting from "./pages/Recruiting";
+import ConstructionLoans from "./pages/ConstructionLoans";
+import USDALoans from "./pages/USDALoans";
+import Training from "./pages/Training";
+import Compensation from "./pages/Compensation";
+import Support from "./pages/Support";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -14,9 +22,16 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Navigation />
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/" element={<Home />} />
+          <Route path="/recruiting" element={<Recruiting />} />
+          <Route path="/construction-loans" element={<ConstructionLoans />} />
+          <Route path="/usda-loans" element={<USDALoans />} />
+          <Route path="/training" element={<Training />} />
+          <Route path="/compensation" element={<Compensation />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
