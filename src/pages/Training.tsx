@@ -73,7 +73,7 @@ const Training = () => {
                 className="text-center"
               >
                 <div className="w-20 h-20 rounded-2xl bg-gradient-primary mx-auto mb-6 flex items-center justify-center shadow-glow">
-                  <feature.icon className="w-10 h-10 text-white" />
+                  <feature.icon className="w-10 h-10 text-primary-foreground" strokeWidth={2.5} />
                 </div>
                 <h3 className="text-2xl font-display font-semibold mb-3">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
