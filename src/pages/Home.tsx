@@ -38,7 +38,7 @@ const Home = () => {
                 </Button>
               </Link>
               <Link to="/construction-loans">
-                <Button size="lg" variant="outline" className="gap-2 text-lg px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                <Button size="lg" variant="hero" className="gap-2 text-lg px-8 py-6">
                   Explore Loans
                   <Building2 className="w-5 h-5" />
                 </Button>
