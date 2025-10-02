@@ -2,6 +2,11 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, BookOpen, Users, Award, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Scene3D } from "@/components/3D/Scene3D";
+import { FloatingGraduationCap } from "@/components/3D/FloatingGraduationCap";
+import { FloatingBook } from "@/components/3D/FloatingBook";
+import { FloatingCertificate } from "@/components/3D/FloatingCertificate";
+import { Suspense } from "react";
 
 const Training = () => {
   const courses = [
@@ -15,24 +20,30 @@ const Training = () => {
 
   return (
     <div className="min-h-screen pt-16">
-      {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-hero overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+')] bg-repeat" />
+      {/* Hero Section with 3D Background */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* 3D Background */}
+        <div className="absolute inset-0 bg-gradient-hero">
+          <div className="absolute inset-0 opacity-50">
+            <Suspense fallback={null}>
+              <Scene3D autoRotate>
+                <FloatingGraduationCap />
+              </Scene3D>
+            </Suspense>
+          </div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-6">
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
           >
-            <GraduationCap className="w-20 h-20 text-secondary mx-auto mb-6" />
-            <h1 className="text-6xl md:text-7xl font-display font-bold mb-6 text-primary-foreground">
+            <h1 className="text-6xl md:text-8xl font-display font-bold mb-6 text-primary-foreground">
               Learn. Grow. <span className="text-gradient-secondary">Excel.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">
+            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12 max-w-3xl mx-auto">
               World-class training programs designed to accelerate your career in lending
             </p>
             <Button size="lg" variant="secondary" className="gap-2 text-lg px-8 py-6">
@@ -41,6 +52,17 @@ const Training = () => {
             </Button>
           </motion.div>
         </div>
+        
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 border-2 border-primary-foreground/50 rounded-full flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-primary-foreground/50 rounded-full" />
+          </div>
+        </motion.div>
       </section>
       
       {/* Training Features */}
@@ -63,22 +85,34 @@ const Training = () => {
                 title: "Certifications",
                 description: "Earn recognized credentials to advance your career"
               }
-            ].map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center"
-              >
-                <div className="w-20 h-20 rounded-2xl bg-gradient-primary mx-auto mb-6 flex items-center justify-center shadow-glow">
-                  <feature.icon className="w-10 h-10 text-primary-foreground" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-2xl font-display font-semibold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </motion.div>
-            ))}
+            ].map((feature, i) => {
+              const Scene3DComponent = i === 0 ? FloatingBook : i === 1 ? FloatingGraduationCap : FloatingCertificate;
+              
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-center group"
+                >
+                  <div className="relative w-full h-64 mb-6 rounded-2xl overflow-hidden shadow-glow bg-gradient-to-br from-primary/5 to-accent/5 border border-border group-hover:border-primary/50 transition-smooth">
+                    <Suspense fallback={
+                      <div className="w-full h-full flex items-center justify-center">
+                        <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+                      </div>
+                    }>
+                      <Scene3D autoRotate>
+                        <Scene3DComponent />
+                      </Scene3D>
+                    </Suspense>
+                  </div>
+                  <h3 className="text-2xl font-display font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
